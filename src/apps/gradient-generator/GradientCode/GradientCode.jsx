@@ -3,17 +3,23 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Highlight from '../../../components/Highlight/Highlight';
 import Background from '../../../components/Background/Background';
-import generateGradientValue from '../generate-gradient-value';
+import generateGradientValue, { generateGradientValueOklch } from '../generate-gradient-value';
 import classes from './GradientCode.styles.less';
 
 export default function GradientCode({ className, values, angle, type }) {
   const gradient = generateGradientValue({ values, angle, type });
+  const gradientOklch = generateGradientValueOklch({ values, angle, type });
 
   return (
     <Background className={cx(classes.gradientCode, className)}>
       <div className={classes.section}>
         <div className={classes.title}>CSS</div>
         <Highlight>{`background-image: ${gradient};`}</Highlight>
+      </div>
+
+      <div className={classes.section}>
+        <div className={classes.title}>CSS (oklch)</div>
+        <Highlight>{`backgroundImage: '${gradientOklch}',`}</Highlight>
       </div>
 
       <div className={classes.section}>
